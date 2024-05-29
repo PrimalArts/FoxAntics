@@ -1,10 +1,11 @@
-[gd_scene load_steps=9 format=3 uid="uid://dffnen4i2g52f"]
+[gd_scene load_steps=10 format=3 uid="uid://dffnen4i2g52f"]
 
 [ext_resource type="Texture2D" uid="uid://b0b7qk4wxe4km" path="res://assets/tiles/Terrain (16x16).png" id="1_lqal2"]
 [ext_resource type="Script" path="res://level_base/level_base.gd" id="1_qb1md"]
 [ext_resource type="PackedScene" uid="uid://bml68fhsl3qdx" path="res://player_cam/player_cam.tscn" id="2_27xti"]
 [ext_resource type="PackedScene" uid="uid://dcl0esgcapc5e" path="res://player/player.tscn" id="3_v27jj"]
 [ext_resource type="PackedScene" uid="uid://c8jxljv3egke3" path="res://enemies/snail/snail.tscn" id="5_2ax88"]
+[ext_resource type="PackedScene" uid="uid://d0pusoi61md4v" path="res://enemies/eagle/eagle.tscn" id="5_e6m8p"]
 [ext_resource type="PackedScene" uid="uid://ce8518wvx27pp" path="res://enemies/frog/frog.tscn" id="6_ejx2x"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_tpp55"]
@@ -512,6 +513,7 @@ texture = ExtResource("1_lqal2")
 
 [sub_resource type="TileSet" id="TileSet_ks0jy"]
 physics_layer_0/collision_layer = 1
+physics_layer_0/collision_mask = 0
 sources/0 = SubResource("TileSetAtlasSource_tpp55")
 
 [node name="LevelBase" type="Node2D"]
@@ -527,19 +529,13 @@ position = Vector2(137, -152)
 zoom = Vector2(2, 2)
 
 [node name="Player" parent="." instance=ExtResource("3_v27jj")]
-position = Vector2(139, -144)
-
-[node name="Snail" parent="." instance=ExtResource("5_2ax88")]
-position = Vector2(430, -54)
+position = Vector2(-15, -46)
 
 [node name="Frog" parent="." instance=ExtResource("6_ejx2x")]
-position = Vector2(265, -213)
+position = Vector2(131, -135)
 
-[node name="Frog2" parent="." instance=ExtResource("6_ejx2x")]
-position = Vector2(119, -233)
+[node name="Eagle" parent="." instance=ExtResource("5_e6m8p")]
+position = Vector2(223, -185)
 
-[node name="Frog3" parent="." instance=ExtResource("6_ejx2x")]
-position = Vector2(63, -186)
-
-[node name="Frog4" parent="." instance=ExtResource("6_ejx2x")]
-position = Vector2(261, -41)
+[node name="Snail" parent="." instance=ExtResource("5_2ax88")]
+position = Vector2(442, -45)

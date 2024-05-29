@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://bswvgq24uav1p"]
+
+[ext_resource type="PackedScene" uid="uid://bcfn5itnq3dno" path="res://bullets/base_bullet/base_bullet.tscn" id="1_axwuy"]
+
+[node name="PllayerBullet" instance=ExtResource("1_axwuy")]
+collision_layer = 8
