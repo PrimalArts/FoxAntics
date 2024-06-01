@@ -119,6 +119,21 @@ _data = {
 radius = 7.0
 height = 22.0
 
+[sub_resource type="Animation" id="Animation_rkx31"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("PlayerSprite:self_modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+
 [sub_resource type="Animation" id="Animation_g1wll"]
 resource_name = "invincible"
 length = 0.4
@@ -136,21 +151,6 @@ tracks/0/keys = {
 "values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0.0705882), Color(1, 1, 1, 1)]
 }
 
-[sub_resource type="Animation" id="Animation_rkx31"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("PlayerSprite:self_modulate")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Color(1, 1, 1, 1)]
-}
-
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_1cy0d"]
 _data = {
 "RESET": SubResource("Animation_rkx31"),
@@ -158,7 +158,7 @@ _data = {
 }
 
 [node name="Player" type="CharacterBody2D" groups=["player"]]
-collision_layer = 0
+collision_layer = 32
 script = ExtResource("1_eylun")
 
 [node name="PlayerSprite" type="Sprite2D" parent="."]
@@ -177,6 +177,7 @@ libraries = {
 autoplay = "idle"
 
 [node name="debug_label" type="Label" parent="."]
+visible = false
 offset_left = -29.0
 offset_top = -64.0
 offset_right = 245.0
@@ -212,5 +213,10 @@ libraries = {
 wait_time = 3.0
 one_shot = true
 
+[node name="HurtTimer" type="Timer" parent="."]
+wait_time = 0.4
+one_shot = true
+
 [connection signal="area_entered" from="Hitbox" to="." method="_on_hitbox_area_entered"]
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
+[connection signal="timeout" from="HurtTimer" to="." method="_on_hurt_timer_timeout"]
