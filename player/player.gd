@@ -11,6 +11,8 @@ class_name Player
 @onready var animation_invincible = $AnimationInvincible
 @onready var timer = $Timer
 @onready var hurt_timer = $HurtTimer
+@onready var hitbox = $Hitbox
+
 
 const Gravity: float = 1000.0
 const Run_Speed: float = 120.0
@@ -158,6 +160,12 @@ func apply_hit():
 	set_state(Player_State.Hurt)
 	SoundManager.play_clip(sound_player, SoundManager.SOUND_DAMAGE)
 
+func retake_damge():
+	for area in hitbox.get_overlapping_areas():
+		if area.is_in_group("dangers"):
+			apply_hit()
+			return
+
 func _on_hitbox_area_entered(area):
 	apply_hit()
 
@@ -165,6 +173,7 @@ func _on_hitbox_area_entered(area):
 func _on_timer_timeout():
 	invincible = false
 	animation_invincible.stop()
+	retake_damge()
 
 
 func _on_hurt_timer_timeout():
